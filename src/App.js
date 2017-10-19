@@ -3,8 +3,9 @@ import axios from 'axios';
 import randomNumber from 'random-number';
 
 import './App.css';
-import Display from './display';
-import Header from './Header';
+import Display from './components/Display';
+import Header from './components/Header';
+import DeckStats from './components/DeckStats';
 
 import {Button} from 'semantic-ui-react'
 
@@ -13,6 +14,7 @@ class App extends Component {
     super(props);
     this.state = {
       cardArray: [],
+      lastDeck: [],
       displayCards: [],
     }
   }
@@ -27,11 +29,12 @@ class App extends Component {
   }
 
   newDeck() {
+    const lastDeck = [...this.state.cardArray];
     axios({
       method: 'get',
       url: 'http://www.clashapi.xyz/api/random-deck',
     }).then(res => {
-      this.setState({cardArray: res.data});
+      this.setState({cardArray: res.data, lastDeck});
     })
   }
 
@@ -48,6 +51,11 @@ class App extends Component {
             onClick={() => this.newDeck()}>
             Generate New Deck
           </Button>
+          <Button
+            color='blue'
+            onClick={() => this.setState({cardArray: this.state.lastDeck})}>
+            Previous Deck
+          </Button>
         </div>
         {typeof cardArray !== 'undefined' &&
           <div style={{marginTop: 16}}>
@@ -56,7 +64,9 @@ class App extends Component {
             />
           </div>
         }
-
+        <div style={{marginTop: 16}}>
+          <DeckStats cardArray={cardArray}/>
+        </div>
       </div>
     );
   }
