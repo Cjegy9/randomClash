@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import randomNumber from 'random-number';
 
 import './App.css';
 import Display from './components/Display';
@@ -40,32 +39,39 @@ class App extends Component {
 
   render() {
     const { cardArray } = this.state;
+    let elixirCost = 0;
+    cardArray.forEach(card => {
+      elixirCost += card.elixirCost;
+    });
     return (
       <div style={{display: 'flex', flexDirection: 'column'}}>
         <div style={{marginBottom: 16}}>
           <Header/>
         </div>
-        <div>
-          <Button
-            color='blue'
-            onClick={() => this.newDeck()}>
-            Generate New Deck
-          </Button>
-          <Button
-            color='blue'
-            onClick={() => this.setState({cardArray: this.state.lastDeck})}>
-            Previous Deck
-          </Button>
-        </div>
-        {typeof cardArray !== 'undefined' &&
-          <div style={{marginTop: 16}}>
-            <Display
-              cardArray={cardArray}
-            />
+        <div style={{padding: '0px 32px'}}>
+          <div style={{display: 'flex', alignItems: 'center'}}>
+            <Button
+              color='blue'
+              onClick={() => this.newDeck()}>
+              Generate New Deck
+            </Button>
+            <Button
+              color='blue'
+              onClick={() => this.setState({cardArray: this.state.lastDeck})}>
+              Previous Deck
+            </Button>
+            <div style={{border: '1px solid none', borderRadius: 4, height: '100%', padding: '9px 12px', background: '#85572d'}}>
+              Average Elixir cost: {elixirCost / 8}
+              <img style={{paddingLeft: 4}} height="12" src="../../elixir_big_icon.png" />
+            </div>
           </div>
-        }
-        <div style={{marginTop: 16}}>
-          <DeckStats cardArray={cardArray}/>
+          {typeof cardArray !== 'undefined' &&
+            <div style={{marginTop: 16}}>
+              <Display
+                cardArray={cardArray}
+              />
+            </div>
+          }
         </div>
       </div>
     );

@@ -14,6 +14,7 @@ const DeckStats = ({cardArray}) => {
 				</div>
 				<div>
 					Average Elixir cost: {elixirCost / 8}
+					<img height="12" src="../../elixir_big_icon.png" />
 				</div>
 			</div>
 		</Segment>

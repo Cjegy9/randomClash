@@ -7,19 +7,17 @@ const CardContainer = ({card}) => {
 		<div style={styles.cardContainer}>
 			<Segment.Group>
 				<Segment>
-					<img width="100" src={`http://www.clashapi.xyz/images/cards/${card.idName}.png`} />
+					<img alt="" style={{width: '100%', maxHeight: 200, maxWidth: 166}} src={`http://www.clashapi.xyz/images/cards/${card.idName}.png`} />
 				</Segment>
 				<Segment>
-					{card.name}
-				</Segment>
-				<Segment>
-					{card.description}
-				</Segment>
-				<Segment>
-					Elixir Cost: {card.elixirCost}
-				</Segment>
-				<Segment>
-					Arena: {card.arena}
+					<div>
+						<div style={{marginRight: 8}}>
+							{card.name}
+						</div>
+						<div>
+							{card.elixirCost} Elixir
+						</div>
+					</div>
 				</Segment>
 			</Segment.Group>
 		</div>
@@ -30,7 +28,7 @@ const styles = {
 	cardContainer: {
 		display: 'flex',
 		flexDirection: 'column',
-		flexGrow: 1,
+		flex: 1,
 		margin: '0px 2px'
 	}
 };

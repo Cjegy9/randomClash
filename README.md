@@ -15,5 +15,7 @@ To Test the app run:
 npm test
 
 This app is hosted using [Surge](https://surge.sh)
-You must be a registered user to deploy to [randomClash.surge.sh](randomClash.surge.sh)
+You must be a registered user to deploy to [randomClash.surge.sh](https://randomClash.surge.sh)
 
+The visual components in this app are imported from the [Semantic UI](https://react.semantic-ui.com/introduction)
+Find all the information about importing components and using the props associated with them.
